@@ -1,10 +1,17 @@
-class Demo1 extends AdventureScene {
+class Scene1 extends AdventureScene {
     constructor() {
-        super("demo1", "Entrance Room");
+        super("Scene1", "Entrance Room");
     }
-
+    preload(){
+        this.load.image('entrance', 'assets/images/entrance.png');
+    }
     onEnter() {
-
+        //background img
+        this.imageObject = this.add.image(
+                    720,//x
+                    540,//y
+            'entrance',
+        )
         let clip = this.add.text(this.w * 0.3, this.w * 0.3, "📎 paperclip")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -39,8 +46,8 @@ class Demo1 extends AdventureScene {
                 });
             })
 
-        let door = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 locked door")
-            .setFontSize(this.s * 2)
+        let door = this.add.image(this.w * 0.1, this.w * 0.15, 'entrance')
+            .setScale(.1)
             .setInteractive()
             .on('pointerover', () => {
                 if (this.hasItem("key")) {
@@ -54,18 +61,28 @@ class Demo1 extends AdventureScene {
                     this.loseItem("key");
                     this.showMessage("*squeak*");
                     door.setText("🚪 unlocked door");
-                    this.gotoScene('demo2');
+                    this.gotoScene('Scene2');
                 }
             })
 
     }
 }
 
-class Demo2 extends AdventureScene {
+class Scene2 extends AdventureScene {
     constructor() {
-        super("demo2", "The second room has a long name (it truly does).");
+        super("Scene2", "Office");
+    }
+    preload(){
+        this.load.image('office', 'assets/images/office.jpg');
     }
     onEnter() {
+        //background img
+        this.imageObject = this.add.image(
+            720,//x
+            540,//y
+            'office',
+        )   
+
         this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -73,7 +90,7 @@ class Demo2 extends AdventureScene {
                 this.showMessage("You've got no other choice, really.");
             })
             .on('pointerdown', () => {
-                this.gotoScene('demo1');
+                this.gotoScene('Scene1');
             });
 
         let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
@@ -101,7 +118,7 @@ class Intro extends Phaser.Scene {
         this.add.text(50,100, "Click anywhere to begin.").setFontSize(20);
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
-            this.time.delayedCall(1000, () => this.scene.start('demo1'));
+            this.time.delayedCall(1000, () => this.scene.start('Scene1'));
         });
     }
 }
@@ -125,7 +142,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Demo1, Demo2, Outro],
+    scene: [Intro, Scene1, Scene2, Outro],
     title: "Adventure Game",
 });
 
