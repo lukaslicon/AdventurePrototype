@@ -1,6 +1,6 @@
 class Scene1 extends AdventureScene {
     constructor() {
-        super("Scene1", "Entrance Room");
+        super("Scene1", "Entrance");
     }
     preload(){
         this.load.image('entrance', 'assets/images/entrance.png');
@@ -9,7 +9,7 @@ class Scene1 extends AdventureScene {
         this.load.image('up', 'assets/images/arrowup.png');
         this.load.image('down', 'assets/images/arrowdown.png');
         this.load.image('chemicals', 'assets/images/hive.png');
-        this.load.image('')
+
     }
     onEnter() {
         //background img
@@ -34,7 +34,7 @@ class Scene1 extends AdventureScene {
                     duration: 100
                 });
             });
-*/      
+
 
         this.add.image(this.w * 0.4, this.w * 0.3, '')
             .setScale(.3)
@@ -50,6 +50,7 @@ class Scene1 extends AdventureScene {
                 }
                 
         })
+        */
         this.add.image(this.w * 0.3, this.w * 0.5, 'chemicals')
             .setScale(.3)
             .setInteractive()
@@ -138,7 +139,7 @@ class Scene2 extends AdventureScene {
             540,//y
             'office',
         )   
-        let key = this.add.text(this.w * 0.5, this.w * 0.1, "🔑 key")
+        let key = this.add.text(this.w * 0.45, this.w * 0.34, "🔑 Keys")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
@@ -220,6 +221,7 @@ class Scene4 extends AdventureScene {
     }
     preload(){
         this.load.image('bathroom', 'assets/images/bathroom.jpg');
+        this.load.image('right', 'assets/images/arrow.png');
     }
     onEnter() {
         //background img
@@ -228,16 +230,17 @@ class Scene4 extends AdventureScene {
             540,//y
             'bathroom',
         )   
-
-        this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
-            .setFontSize(this.s * 2)
-            .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage("You've got no other choice, really.");
-            })
-            .on('pointerdown', () => {
+        
+        let rightArrow = this.add.image(this.w * 0.725, this.w * 0.5, 'right')
+        .setScale(.5)
+        .setInteractive()
+        .on('pointerover', () => { 
+                this.showMessage("Entrance.");
+        })
+        .on('pointerdown', () => {
+                this.showMessage("*walking noises*");
                 this.gotoScene('Scene1');
-            });
+        })
 
         let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
             .setInteractive()
