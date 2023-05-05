@@ -77,6 +77,7 @@ class Scene1 extends AdventureScene {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A FLY!");
             this.destroyBug(fly2);
+            elimCount++;
             
         }
         else{
@@ -129,6 +130,7 @@ class Scene1 extends AdventureScene {
             this.counter = this.counter+1;
             this.showMessage("SMACKED A weird bug!");
             this.destroyBug(weird1);
+            elimCount++;
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -145,6 +147,7 @@ class Scene1 extends AdventureScene {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A weird bug!");
             this.destroyBug(weird2);
+            elimCount++;
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -156,11 +159,13 @@ class Scene1 extends AdventureScene {
        .on('pointerover', () => {
            this.showMessage('*buzzzzzz*');
            this.weirdBugMovement(weird3);
+           elimCount++;
        })
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A weird bug!");
             this.destroyBug(weird3);
+            elimCount++;
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -410,6 +415,7 @@ class Scene2 extends AdventureScene {
      if(this.hasItem("Fly Swatter")){
          this.showMessage("SMACKED A FLY!");
          this.destroyBug(fly1);
+         elimCount++;
      }
      else{
          this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -426,6 +432,7 @@ class Scene2 extends AdventureScene {
      if(this.hasItem("Fly Swatter")){
          this.showMessage("SMACKED A FLY!");
          this.destroyBug(fly2);
+         elimCount++;
      }
      else{
          this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -442,6 +449,7 @@ class Scene2 extends AdventureScene {
      if(this.hasItem("Fly Swatter")){
          this.showMessage("SMACKED A FLY!");
          this.destroyBug(fly3);
+         elimCount++;
      }
      else{
          this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -458,6 +466,7 @@ class Scene2 extends AdventureScene {
      if(this.hasItem("Fly Swatter")){
          this.showMessage("SMACKED A weird bug!");
          this.destroyBug(weird1);
+         elimCount++;
      }
      else{
          this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -474,6 +483,7 @@ class Scene2 extends AdventureScene {
      if(this.hasItem("Fly Swatter")){
          this.showMessage("SMACKED A weird bug!");
          this.destroyBug(weird2);
+         elimCount++;
      }
      else{
          this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -490,6 +500,7 @@ class Scene2 extends AdventureScene {
      if(this.hasItem("Fly Swatter")){
          this.showMessage("SMACKED A weird bug!");
          this.destroyBug(weird3);
+         elimCount++;
      }
      else{
          this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -529,6 +540,7 @@ class Scene3 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
              this.destroyBug(fly1);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -545,6 +557,7 @@ class Scene3 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
              this.destroyBug(fly2);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -561,6 +574,7 @@ class Scene3 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
              this.destroyBug(fly3);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -577,6 +591,7 @@ class Scene3 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
              this.destroyBug(fly4);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -593,6 +608,7 @@ class Scene3 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A weird bug!");
              this.destroyBug(weird1);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -609,6 +625,7 @@ class Scene3 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A weird bug!");
              this.destroyBug(weird2);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -625,6 +642,7 @@ class Scene3 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A weird bug!");
              this.destroyBug(weird3);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -675,6 +693,7 @@ class Scene4 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
              this.destroyBug(fly1);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -691,6 +710,7 @@ class Scene4 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
              this.destroyBug(fly2);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -707,6 +727,7 @@ class Scene4 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
              this.destroyBug(fly3);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -723,6 +744,7 @@ class Scene4 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
              this.destroyBug(fly4);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -739,6 +761,7 @@ class Scene4 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A weird bug!");
              this.destroyBug(weird1);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -755,6 +778,7 @@ class Scene4 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A weird bug!");
              this.destroyBug(weird2);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -771,6 +795,7 @@ class Scene4 extends AdventureScene {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A weird bug!");
              this.destroyBug(weird3);
+             elimCount++;
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -788,6 +813,7 @@ class Scene4 extends AdventureScene {
              if(this.hasItem("Chemicals")){
                  this.showMessage("Got a beetle!");
                  this.destroyBug(beetle1);
+                 elimCount++;
              }
              else{
                  this.showMessage("Must have chemicals to exterminate beetles.")
@@ -806,6 +832,7 @@ class Scene4 extends AdventureScene {
          if(this.hasItem("Chemicals")){
              this.showMessage("Got a beetle!");
              this.destroyBug(beetle2);
+             elimCount++;
              }
              else{
                  this.showMessage("Must have chemicals to exterminate beetles.")
@@ -822,6 +849,7 @@ class Scene4 extends AdventureScene {
          if(this.hasItem("Chemicals")){
              this.showMessage("Got a beetle!");
              this.destroyBug(beetle3);
+             elimCount++;
              }
              else{
                  this.showMessage("Must have chemicals to exterminate beetles.")
@@ -838,6 +866,7 @@ class Scene4 extends AdventureScene {
          if(this.hasItem("Chemicals")){
              this.showMessage("Got a termite!");
              this.destroyBug(termite1);
+             elimCount++;
              }
              else{
                  this.showMessage("Must have chemicals to exterminate termites.")
@@ -854,6 +883,7 @@ class Scene4 extends AdventureScene {
          if(this.hasItem("Chemicals")){
              this.showMessage("Got a termite!");
              this.destroyBug(termite2);
+             elimCount++;
              }
              else{
                  this.showMessage("Must have chemicals to exterminate termites.")
@@ -870,6 +900,7 @@ class Scene4 extends AdventureScene {
          if(this.hasItem("Chemicals")){
              this.showMessage("Got a termite!");
              this.destroyBug(termite3);
+             elimCount++;
              }
              else{
                  this.showMessage("Must have chemicals to exterminate termites.")
