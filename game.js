@@ -1,4 +1,4 @@
-let counter = 0;
+
 
 class Scene1 extends AdventureScene {
     constructor() {
@@ -17,6 +17,7 @@ class Scene1 extends AdventureScene {
         this.load.image('termite', 'assets/images/bug4.png');
     }
     onEnter() {
+
         //background img
         this.imageObject = this.add.image(
                     720,//x
@@ -47,13 +48,7 @@ class Scene1 extends AdventureScene {
        .setInteractive()
        .on('pointerover', () => {
            this.showMessage('*buzzzzzz*');
-           this.tweens.add({
-               targets: fly1,
-               x: this.s + (this.h - 2 * this.s) * Math.random(),
-               y: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.out',
-               duration: 1000
-           });
+           this.flyMovement(fly1);
        })
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
@@ -75,13 +70,7 @@ class Scene1 extends AdventureScene {
        .setInteractive()
        .on('pointerover', () => {
            this.showMessage('*buzzzzzz*');
-           this.tweens.add({
-               targets: fly2,
-               x: this.s + (this.h - 2 * this.s) * Math.random(),
-               y: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.out',
-               duration: 1000
-           });
+           this.flyMovement(fly2);
        })
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
@@ -103,13 +92,7 @@ class Scene1 extends AdventureScene {
        .setInteractive()
        .on('pointerover', () => {
            this.showMessage('*buzzzzzz*');
-           this.tweens.add({
-               targets: fly3,
-               x: this.s + (this.h - 2 * this.s) * Math.random(),
-               y: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.out',
-               duration: 1000
-           });
+           this.flyMovement(fly3);
        })
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
@@ -131,13 +114,7 @@ class Scene1 extends AdventureScene {
        .setInteractive()
        .on('pointerover', () => {
            this.showMessage('*buzzzzzz*');
-           this.tweens.add({
-               targets: fly4,
-               x: this.s + (this.h - 2 * this.s) * Math.random(),
-               y: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.out',
-               duration: 1000
-           });
+           this.flyMovement(fly4);
        })
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
@@ -159,16 +136,11 @@ class Scene1 extends AdventureScene {
        .setInteractive()
        .on('pointerover', () => {
            this.showMessage('*buzzzzzz*');
-           this.tweens.add({
-               targets: weird1,
-               x: this.s + (this.h - 2 * this.s) * Math.random(),
-               y: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.out',
-               duration: 3000
-           });
+           this.weirdBugMovement(weird1);
        })
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
+            this.counter = this.counter+1;
             this.showMessage("SMACKED A weird bug!");
             this.tweens.add({
                 targets: weird1,
@@ -186,17 +158,12 @@ class Scene1 extends AdventureScene {
        .setScale(.15)
        .setInteractive()
        .on('pointerover', () => {
-           this.showMessage('*buzzzzzz*');
-           this.tweens.add({
-               targets: weird2,
-               x: this.s + (this.h - 2 * this.s) * Math.random(),
-               y: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.out',
-               duration: 3000
-           });
+            this.showMessage('*buzzzzzz*');
+            this.weirdBugMovement(weird2);
        })
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
+            counter++;
             this.showMessage("SMACKED A weird bug!");
             this.tweens.add({
                 targets: weird2,
@@ -215,13 +182,7 @@ class Scene1 extends AdventureScene {
        .setInteractive()
        .on('pointerover', () => {
            this.showMessage('*buzzzzzz*');
-           this.tweens.add({
-               targets: weird3,
-               x: this.s + (this.h - 2 * this.s) * Math.random(),
-               y: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.out',
-               duration: 3000
-           });
+           this.weirdBugMovement(weird3);
        })
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
@@ -242,13 +203,8 @@ class Scene1 extends AdventureScene {
        .setScale(.15)
        .setInteractive()
        .on('pointerover', () => {
-           this.showMessage('*beetle noises*');
-           this.tweens.add({
-               targets: beetle1,
-               x: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.out',
-               duration: 5000
-           });
+            this.showMessage('*beetle noises*');
+            this.beetleMovement(beetle1);
        })
        .on('pointerdown', () => {
             if(this.hasItem("Chemicals")){
@@ -272,12 +228,7 @@ class Scene1 extends AdventureScene {
        .setInteractive()
        .on('pointerover', () => {
            this.showMessage('*beetle noises*');
-           this.tweens.add({
-               targets: beetle2,
-               x: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.out',
-               duration: 3500
-           });
+            this.beetleMovement(beetle2);
        })
        .on('pointerdown', () => {
         if(this.hasItem("Chemicals")){
@@ -299,12 +250,7 @@ class Scene1 extends AdventureScene {
        .setInteractive()
        .on('pointerover', () => {
            this.showMessage('*beetle noises*');
-           this.tweens.add({
-               targets: beetle3,
-               y: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.out',
-               duration: 3500
-           });
+           this.beetleMovement(beetle3);
        })
        .on('pointerdown', () => {
         if(this.hasItem("Chemicals")){
@@ -326,24 +272,12 @@ class Scene1 extends AdventureScene {
        .setInteractive()
        .on('pointerover', () => {
            this.showMessage('*bug noises*');
-           this.tweens.add({
-               targets: termite1,
-               x: this.s + (this.h - 2 * this.s) * Math.random(),
-               y: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.inout',
-               duration: 5000
-           });
+           this.termiteMovement(termite1);
        })
        .on('pointerdown', () => {
         if(this.hasItem("Chemicals")){
             this.showMessage("Got a termite!");
-            this.tweens.add({
-                targets: termite1,
-                y: `-=${2 * this.s}`,
-                alpha: { from: 1, to: 0 },
-                duration: 500,
-                onComplete: () => termite1.destroy()
-        });
+            this.termiteMovement(termite1);
             }
             else{
                 this.showMessage("Must have chemicals to exterminate termites.")
@@ -354,13 +288,7 @@ class Scene1 extends AdventureScene {
        .setInteractive()
        .on('pointerover', () => {
            this.showMessage('*bug noises*');
-           this.tweens.add({
-               targets: termite2,
-               x: this.s + (this.h - 2 * this.s) * Math.random(),
-               y: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.inout',
-               duration: 5000
-           });
+           this.termiteMovement(termite2);
        })
        .on('pointerdown', () => {
         if(this.hasItem("Chemicals")){
@@ -382,13 +310,7 @@ class Scene1 extends AdventureScene {
        .setInteractive()
        .on('pointerover', () => {
            this.showMessage('*bug noises*');
-           this.tweens.add({
-               targets: termite3,
-               x: this.s + (this.h - 2 * this.s) * Math.random(),
-               y: this.s + (this.h - 2 * this.s) * Math.random(),
-               ease: 'Sine.inout',
-               duration: 5000
-           });
+           this.termiteMovement(termite3);
        })       
        .on('pointerdown', () => {
         if(this.hasItem("Chemicals")){
@@ -474,6 +396,9 @@ class Scene1 extends AdventureScene {
                     this.gotoScene('Scene4');
                 }
             })
+            if(counter = 2){
+                this.gotoScene('outro1');
+            }
         } 
 
 }

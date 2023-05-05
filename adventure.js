@@ -53,6 +53,47 @@ class AdventureScene extends Phaser.Scene {
 
     }
 
+    //all movement functions for bugs
+    termiteMovement(image){
+        this.add.image(image);
+        this.tweens.add({
+            targets: image,
+            x: this.s + (this.h - 2 * this.s) * Math.random(),
+            y: this.s + (this.h - 2 * this.s) * Math.random(),
+            ease: 'Sine.inout',
+            duration: 5000
+        });
+    }
+    beetleMovement(image){
+        this.add.image(image);
+        this.tweens.add({
+            targets: image,
+            x: this.s + (this.h - 2 * this.s) * Math.random(),
+            ease: 'Sine.out',
+            duration: 5000
+        });
+    }
+    weirdBugMovement(image){
+        this.add.image(image);
+        this.tweens.add({
+            targets: image,
+            x: this.s + (this.h - 2 * this.s) * Math.random(),
+            y: this.s + (this.h - 2 * this.s) * Math.random(),
+            ease: 'Sine.out',
+            duration: 3000
+        });
+    }
+    flyMovement(image){
+        this.add.image(image);
+        this.tweens.add({
+            targets: image,
+            x: this.s + (this.h - 2 * this.s) * Math.random(),
+            y: this.s + (this.h - 2 * this.s) * Math.random(),
+            ease: 'Sine.out',
+            duration: 1000
+        });
+    }
+
     showMessage(message) {
         this.messageBox.setText(message);
         this.tweens.add({
@@ -62,7 +103,17 @@ class AdventureScene extends Phaser.Scene {
             duration: 4 * this.transitionDuration
         });
     }
+    
 
+    showMessage(message) {
+        this.messageBox.setText(message);
+        this.tweens.add({
+            targets: this.messageBox,
+            alpha: { from: 1, to: 0 },
+            easing: 'Quintic.in',
+            duration: 4 * this.transitionDuration
+        });
+    }
     updateInventory() {
         if (this.inventory.length > 0) {
             this.tweens.add({
