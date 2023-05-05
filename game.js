@@ -1,4 +1,4 @@
-
+let elimCount = 0;
 
 class Scene1 extends AdventureScene {
     constructor() {
@@ -24,18 +24,19 @@ class Scene1 extends AdventureScene {
                     540,//y
             'entrance',
         )
+
         let button = this.add.text(this.w * 0.01, this.w * 0.01, "Tell Owner I am Finished.")
         .setFontSize(this.s * 2)
         .setInteractive()
         .on('pointerover', () => {
-            if (this.counter = 5) {
+            if (elimCount >= 3) {
                 this.showMessage("You have elimated enough bugs to call it a day!");
             } else {
                 this.showMessage("You need to elimate more bugs before you can head home from work.");
             }
         })
         .on('pointerdown', () => {
-            if (this.counter = 5) {
+            if (elimCount >= 3) {
                 this.gotoScene('outro1');
             }
             else{
@@ -53,13 +54,7 @@ class Scene1 extends AdventureScene {
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A FLY!");
-            this.tweens.add({
-                targets: fly1,
-                y: `-=${2 * this.s}`,
-                alpha: { from: 1, to: 0 },
-                duration: 500,
-                onComplete: () => fly1.destroy()
-        });
+            this.destroyBug(fly1);
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -75,13 +70,7 @@ class Scene1 extends AdventureScene {
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A FLY!");
-            this.tweens.add({
-                targets: fly2,
-                y: `-=${2 * this.s}`,
-                alpha: { from: 1, to: 0 },
-                duration: 500,
-                onComplete: () => fly2.destroy()
-        });
+            this.destroyBug(fly2);
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -97,13 +86,7 @@ class Scene1 extends AdventureScene {
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A FLY!");
-            this.tweens.add({
-                targets: fly3,
-                y: `-=${2 * this.s}`,
-                alpha: { from: 1, to: 0 },
-                duration: 500,
-                onComplete: () => fly3.destroy()
-        });
+            this.destroyBug(fly3);
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -119,13 +102,7 @@ class Scene1 extends AdventureScene {
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A FLY!");
-            this.tweens.add({
-                targets: fly4,
-                y: `-=${2 * this.s}`,
-                alpha: { from: 1, to: 0 },
-                duration: 500,
-                onComplete: () => fly4.destroy()
-        });
+            this.destroyBug(fly4);
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -142,13 +119,7 @@ class Scene1 extends AdventureScene {
         if(this.hasItem("Fly Swatter")){
             this.counter = this.counter+1;
             this.showMessage("SMACKED A weird bug!");
-            this.tweens.add({
-                targets: weird1,
-                y: `-=${2 * this.s}`,
-                alpha: { from: 1, to: 0 },
-                duration: 500,
-                onComplete: () => weird1.destroy()
-         });
+            this.destroyBug(weird1);
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -164,13 +135,7 @@ class Scene1 extends AdventureScene {
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A weird bug!");
-            this.tweens.add({
-                targets: weird2,
-                y: `-=${2 * this.s}`,
-                alpha: { from: 1, to: 0 },
-                duration: 500,
-                onComplete: () => weird2.destroy()
-        });
+            this.destroyBug(weird2);
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -186,14 +151,7 @@ class Scene1 extends AdventureScene {
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A weird bug!");
-            this.tweens.add({
-                targets: weird3,
-                y: `-=${2 * this.s}`,
-                alpha: { from: 1, to: 0 },
-                duration: 500,
-                onComplete: () => weird3.destroy()
-                
-    });
+            this.destroyBug(weird3);
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -209,13 +167,8 @@ class Scene1 extends AdventureScene {
        .on('pointerdown', () => {
             if(this.hasItem("Chemicals")){
                 this.showMessage("Got a beetle!");
-                this.tweens.add({
-                    targets: beetle1,
-                    y: `-=${2 * this.s}`,
-                    alpha: { from: 1, to: 0 },
-                    duration: 500,
-                    onComplete: () => beetle1.destroy()
-        });
+                this.destroyBug(beetle1);
+                elimCount++;
             }
             else{
                 this.showMessage("Must have chemicals to exterminate beetles.")
@@ -233,13 +186,8 @@ class Scene1 extends AdventureScene {
        .on('pointerdown', () => {
         if(this.hasItem("Chemicals")){
             this.showMessage("Got a beetle!");
-            this.tweens.add({
-                targets: beetle2,
-                y: `-=${2 * this.s}`,
-                alpha: { from: 1, to: 0 },
-                duration: 500,
-                onComplete: () => beetle2.destroy()
-        });
+            this.destroyBug(beetle2);
+            elimCount++;
             }
             else{
                 this.showMessage("Must have chemicals to exterminate beetles.")
@@ -255,13 +203,8 @@ class Scene1 extends AdventureScene {
        .on('pointerdown', () => {
         if(this.hasItem("Chemicals")){
             this.showMessage("Got a beetle!");
-            this.tweens.add({
-                targets: beetle3,
-                y: `-=${2 * this.s}`,
-                alpha: { from: 1, to: 0 },
-                duration: 500,
-                onComplete: () => beetle3.destroy()
-        });
+            this.destroyBug(beetle3);
+            elimCount++;
             }
             else{
                 this.showMessage("Must have chemicals to exterminate beetles.")
@@ -277,7 +220,7 @@ class Scene1 extends AdventureScene {
        .on('pointerdown', () => {
         if(this.hasItem("Chemicals")){
             this.showMessage("Got a termite!");
-            this.termiteMovement(termite1);
+            this.destroyBug(termite1);
             }
             else{
                 this.showMessage("Must have chemicals to exterminate termites.")
@@ -293,13 +236,7 @@ class Scene1 extends AdventureScene {
        .on('pointerdown', () => {
         if(this.hasItem("Chemicals")){
             this.showMessage("Got a termite!");
-            this.tweens.add({
-                targets: termite2,
-                y: `-=${2 * this.s}`,
-                alpha: { from: 1, to: 0 },
-                duration: 500,
-                onComplete: () => termite2.destroy()
-        });
+            this.destroyBug(termite2);
             }
             else{
                 this.showMessage("Must have chemicals to exterminate termites.")
@@ -315,13 +252,7 @@ class Scene1 extends AdventureScene {
        .on('pointerdown', () => {
         if(this.hasItem("Chemicals")){
             this.showMessage("Got a termite!");
-            this.tweens.add({
-                targets: termite3,
-                y: `-=${2 * this.s}`,
-                alpha: { from: 1, to: 0 },
-                duration: 500,
-                onComplete: () => termite3.destroy()
-        });
+            this.destroyBug(termite3);
             }
             else{
                 this.showMessage("Must have chemicals to exterminate termites.")
@@ -396,9 +327,6 @@ class Scene1 extends AdventureScene {
                     this.gotoScene('Scene4');
                 }
             })
-            if(counter = 2){
-                this.gotoScene('outro1');
-            }
         } 
 
 }
@@ -450,11 +378,10 @@ class Scene2 extends AdventureScene {
                 this.showMessage("Entrance");
         })
         .on('pointerdown', () => {
-            if (this.hasItem("key")) {
                 this.showMessage("*walking noises*");
                 this.gotoScene('Scene1');
-            }
         })
+
     let fly1 =this.add.image(this.w * 0.3, this.w * 0.2, 'fly')
     .setScale(.15)
     .setInteractive()
