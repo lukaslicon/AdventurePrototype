@@ -1,4 +1,4 @@
-let elimCount = 0;
+        let elimCount = 0;
 
 class Scene1 extends AdventureScene {
     constructor() {
