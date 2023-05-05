@@ -33,13 +33,12 @@ class AdventureScene extends Phaser.Scene {
             .setText("count: ")
             .setStyle({ fontSize: `${3 * this.s}px` })
             .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
-
-        let count = 0;
+/*
         this.add.text(this.w * .75 + this.s, this.h * .2)
-            .setText(count)
+            .setText(elimCount)
             .setStyle({ fontSize: `${3 * this.s}px` })
             .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
-
+*/
         this.messageBox = this.add.text(this.w * 0.75 + this.s, this.h * 0.33)
             .setStyle({ fontSize: `${2 * this.s}px`, color: '#eea' })
             .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
@@ -67,7 +66,12 @@ class AdventureScene extends Phaser.Scene {
         this.onEnter();
 
     }
+/*
+    updateCount(elimCount){
+        elimCount = elimCount + 1;
+    }
 
+    */
     //destroy bugs
     destroyBug(image){
         this.add.image(image);
