@@ -90,7 +90,7 @@ class AdventureScene extends Phaser.Scene {
             this.inventoryTexts.push(text);
         });
     }
-
+    
     hasItem(item) {
         return this.inventory.includes(item);
     }
@@ -135,6 +135,12 @@ class AdventureScene extends Phaser.Scene {
             this.inventory = this.inventory.filter((e) => e != item);
             this.updateInventory();
         });
+    }
+
+    checkWin(counter){
+        if(counter >= 1){
+            this.gotoScene('outro');
+        }
     }
 
     gotoScene(key) {
