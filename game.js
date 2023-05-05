@@ -23,6 +23,24 @@ class Scene1 extends AdventureScene {
                     540,//y
             'entrance',
         )
+        let button = this.add.text(this.w * 0.01, this.w * 0.01, "Tell Owner I am Finished.")
+        .setFontSize(this.s * 2)
+        .setInteractive()
+        .on('pointerover', () => {
+            if (this.counter = 5) {
+                this.showMessage("You have elimated enough bugs to call it a day!");
+            } else {
+                this.showMessage("You need to elimate more bugs before you can head home from work.");
+            }
+        })
+        .on('pointerdown', () => {
+            if (this.counter = 5) {
+                this.gotoScene('outro1');
+            }
+            else{
+                this.gotoScene('outro2');
+            }
+        })
 
     let fly1 =this.add.image(this.w * 0.3, this.w * 0.2, 'fly')
        .setScale(.15)
@@ -900,6 +918,17 @@ class Scene3 extends AdventureScene {
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
          }
     })
+
+    let downArrow = this.add.image(this.w * 0.375, this.w * 0.5, 'down')
+        .setScale(.5)
+        .setInteractive()
+        .on('pointerover', () => { 
+                this.showMessage("Entrance.");
+        })
+        .on('pointerdown', () => {
+                this.showMessage("*walking noises*");
+                this.gotoScene('Scene1');
+        })
     }
 }
 
@@ -1313,9 +1342,9 @@ class Intro extends Phaser.Scene {
     }
 }
 
-class Outro extends Phaser.Scene {
+class Outro1 extends Phaser.Scene {
     constructor() {
-        super('outro');
+        super('outro1');
     }
     create() {
         this.add.text(50, 50, "Congratulations you have exterminated all the bugs!").setFontSize(50);
@@ -1323,6 +1352,17 @@ class Outro extends Phaser.Scene {
         this.input.on('pointerdown', () => this.scene.start('intro'));
     }
 }
+class Outro2 extends Phaser.Scene {
+    constructor() {
+        super('outro2');
+    }
+    create() {
+        this.add.text(50, 50, "YOU SUCK!").setFontSize(50);
+        this.add.text(50, 100, "Click anywhere to restart.").setFontSize(20);
+        this.input.on('pointerdown', () => this.scene.start('intro'));
+    }
+}
+
 
 
 const game = new Phaser.Game({
@@ -1333,7 +1373,7 @@ const game = new Phaser.Game({
         height: 1080
     },
     //scene: [Intro, Scene1, Scene2, Scene3, Scene4, Outro],
-    scene: [Scene1, Intro, Scene2, Scene3, Scene4, Outro],
+    scene: [Scene1, Intro, Scene2, Scene3, Scene4, Outro1, Outro2],
     //scene: [Scene2, Intro, Scene1, Scene3, Scene4, Outro],
     //scene: [Scene3, Intro, Scene1, Scene2, Scene4, Outro],
     //scene: [Scene4, Intro, Scene1, Scene2, Scene3, Outro],
