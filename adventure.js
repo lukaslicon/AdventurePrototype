@@ -2,7 +2,6 @@ class AdventureScene extends Phaser.Scene {
 
     init(data) {
         this.inventory = data.inventory || [];
-        
 
     }
 
@@ -33,12 +32,13 @@ class AdventureScene extends Phaser.Scene {
             .setText("count: ")
             .setStyle({ fontSize: `${3 * this.s}px` })
             .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
-/*
-        this.add.text(this.w * .75 + this.s, this.h * .2)
-            .setText(elimCount)
-            .setStyle({ fontSize: `${3 * this.s}px` })
-            .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
-*/
+            
+        this.add.text(this.w * .75 + this.s, this.h * .25)
+        .setText("*updates with room swap*")
+        .setStyle({ fontSize: `${1 * this.s}px` })
+        .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
+
+
         this.messageBox = this.add.text(this.w * 0.75 + this.s, this.h * 0.33)
             .setStyle({ fontSize: `${2 * this.s}px`, color: '#eea' })
             .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
@@ -66,13 +66,11 @@ class AdventureScene extends Phaser.Scene {
         this.onEnter();
 
     }
-/*
-    updateCount(elimCount){
-        elimCount = elimCount + 1;
+    removeText() {
+        text.destroy();
     }
 
-    */
-    //destroy bugs
+    //destroy any bug
     destroyBug(image){
         this.add.image(image);
         this.tweens.add({
@@ -144,6 +142,7 @@ class AdventureScene extends Phaser.Scene {
             duration: 4 * this.transitionDuration
         });
     }
+
     updateInventory() {
         if (this.inventory.length > 0) {
             this.tweens.add({

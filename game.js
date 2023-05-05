@@ -17,6 +17,10 @@ class Scene1 extends AdventureScene {
         this.load.image('termite', 'assets/images/bug4.png');
     }
     onEnter() {
+        let score = this.add.text(this.w * .875 + this.s, this.h * .2)
+        .setText(elimCount)
+        .setStyle({ fontSize: `${3 * this.s}px` })
+        .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
 
         //background img
         this.imageObject = this.add.image(
@@ -36,6 +40,7 @@ class Scene1 extends AdventureScene {
             }
         })
         .on('pointerdown', () => {
+            button.setFill('#FFFF00');
             if (elimCount >= 3) {
                 this.gotoScene('outro1');
             }
@@ -55,6 +60,7 @@ class Scene1 extends AdventureScene {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A FLY!");
             this.destroyBug(fly1);
+            elimCount++;
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -71,6 +77,7 @@ class Scene1 extends AdventureScene {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A FLY!");
             this.destroyBug(fly2);
+            
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -87,6 +94,7 @@ class Scene1 extends AdventureScene {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A FLY!");
             this.destroyBug(fly3);
+            elimCount++;
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -103,6 +111,7 @@ class Scene1 extends AdventureScene {
         if(this.hasItem("Fly Swatter")){
             this.showMessage("SMACKED A FLY!");
             this.destroyBug(fly4);
+            elimCount++;
         }
         else{
             this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -221,6 +230,7 @@ class Scene1 extends AdventureScene {
         if(this.hasItem("Chemicals")){
             this.showMessage("Got a termite!");
             this.destroyBug(termite1);
+            elimCount++;
             }
             else{
                 this.showMessage("Must have chemicals to exterminate termites.")
@@ -237,6 +247,7 @@ class Scene1 extends AdventureScene {
         if(this.hasItem("Chemicals")){
             this.showMessage("Got a termite!");
             this.destroyBug(termite2);
+            elimCount++;
             }
             else{
                 this.showMessage("Must have chemicals to exterminate termites.")
@@ -253,6 +264,7 @@ class Scene1 extends AdventureScene {
         if(this.hasItem("Chemicals")){
             this.showMessage("Got a termite!");
             this.destroyBug(termite3);
+            elimCount++;
             }
             else{
                 this.showMessage("Must have chemicals to exterminate termites.")
@@ -328,9 +340,9 @@ class Scene1 extends AdventureScene {
                 }
             })
         } 
-
+        update(){
+        }
 }
-
 
 
 
@@ -353,6 +365,11 @@ class Scene2 extends AdventureScene {
             540,//y
             'office',
         )   
+        let score = this.add.text(this.w * .875 + this.s, this.h * .2)
+        .setText(elimCount)
+        .setStyle({ fontSize: `${3 * this.s}px` })
+        .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
+
         let key = this.add.text(this.w * 0.45, this.w * 0.34, "🔑 Keys")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -382,29 +399,17 @@ class Scene2 extends AdventureScene {
                 this.gotoScene('Scene1');
         })
 
-    let fly1 =this.add.image(this.w * 0.3, this.w * 0.2, 'fly')
+    let fly1 = this.add.image(this.w * 0.3, this.w * 0.2, 'fly')
     .setScale(.15)
     .setInteractive()
     .on('pointerover', () => {
         this.showMessage('*buzzzzzz*');
-        this.tweens.add({
-            targets: fly1,
-            x: this.s + (this.h - 2 * this.s) * Math.random(),
-            y: this.s + (this.h - 2 * this.s) * Math.random(),
-            ease: 'Sine.out',
-            duration: 1000
-        });
+        this.flyMovement(fly1);
     })
     .on('pointerdown', () => {
      if(this.hasItem("Fly Swatter")){
          this.showMessage("SMACKED A FLY!");
-         this.tweens.add({
-             targets: fly1,
-             y: `-=${2 * this.s}`,
-             alpha: { from: 1, to: 0 },
-             duration: 500,
-             onComplete: () => fly1.destroy()
-     });
+         this.destroyBug(fly1);
      }
      else{
          this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -415,24 +420,12 @@ class Scene2 extends AdventureScene {
     .setInteractive()
     .on('pointerover', () => {
         this.showMessage('*buzzzzzz*');
-        this.tweens.add({
-            targets: fly2,
-            x: this.s + (this.h - 2 * this.s) * Math.random(),
-            y: this.s + (this.h - 2 * this.s) * Math.random(),
-            ease: 'Sine.out',
-            duration: 1000
-        });
+        this.flyMovement(fly2);
     })
     .on('pointerdown', () => {
      if(this.hasItem("Fly Swatter")){
          this.showMessage("SMACKED A FLY!");
-         this.tweens.add({
-             targets: fly2,
-             y: `-=${2 * this.s}`,
-             alpha: { from: 1, to: 0 },
-             duration: 500,
-             onComplete: () => fly2.destroy()
-     });
+         this.destroyBug(fly2);
      }
      else{
          this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -443,53 +436,28 @@ class Scene2 extends AdventureScene {
     .setInteractive()
     .on('pointerover', () => {
         this.showMessage('*buzzzzzz*');
-        this.tweens.add({
-            targets: fly3,
-            x: this.s + (this.h - 2 * this.s) * Math.random(),
-            y: this.s + (this.h - 2 * this.s) * Math.random(),
-            ease: 'Sine.out',
-            duration: 1000
-        });
+        this.flyMovement(fly3);
     })
     .on('pointerdown', () => {
      if(this.hasItem("Fly Swatter")){
          this.showMessage("SMACKED A FLY!");
-         this.tweens.add({
-             targets: fly3,
-             y: `-=${2 * this.s}`,
-             alpha: { from: 1, to: 0 },
-             duration: 500,
-             onComplete: () => fly3.destroy()
-     });
+         this.destroyBug(fly3);
      }
      else{
          this.showMessage("Must have a Fly Swatter to smack some flies.")
      }
      })
-
      let weird1 =this.add.image(this.w * 0.1, this.w * 0.1, 'weirdbug')
     .setScale(.15)
     .setInteractive()
     .on('pointerover', () => {
         this.showMessage('*buzzzzzz*');
-        this.tweens.add({
-            targets: weird1,
-            x: this.s + (this.h - 2 * this.s) * Math.random(),
-            y: this.s + (this.h - 2 * this.s) * Math.random(),
-            ease: 'Sine.out',
-            duration: 3000
-        });
+        this.weirdBugMovement(weird1);
     })
     .on('pointerdown', () => {
      if(this.hasItem("Fly Swatter")){
          this.showMessage("SMACKED A weird bug!");
-         this.tweens.add({
-             targets: weird1,
-             y: `-=${2 * this.s}`,
-             alpha: { from: 1, to: 0 },
-             duration: 500,
-             onComplete: () => weird1.destroy()
-      });
+         this.destroyBug(weird1);
      }
      else{
          this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -500,24 +468,12 @@ class Scene2 extends AdventureScene {
     .setInteractive()
     .on('pointerover', () => {
         this.showMessage('*buzzzzzz*');
-        this.tweens.add({
-            targets: weird2,
-            x: this.s + (this.h - 2 * this.s) * Math.random(),
-            y: this.s + (this.h - 2 * this.s) * Math.random(),
-            ease: 'Sine.out',
-            duration: 3000
-        });
+        this.weirdBugMovement(weird2);
     })
     .on('pointerdown', () => {
      if(this.hasItem("Fly Swatter")){
          this.showMessage("SMACKED A weird bug!");
-         this.tweens.add({
-             targets: weird2,
-             y: `-=${2 * this.s}`,
-             alpha: { from: 1, to: 0 },
-             duration: 500,
-             onComplete: () => weird2.destroy()
-     });
+         this.destroyBug(weird2);
      }
      else{
          this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -528,24 +484,12 @@ class Scene2 extends AdventureScene {
     .setInteractive()
     .on('pointerover', () => {
         this.showMessage('*buzzzzzz*');
-        this.tweens.add({
-            targets: weird3,
-            x: this.s + (this.h - 2 * this.s) * Math.random(),
-            y: this.s + (this.h - 2 * this.s) * Math.random(),
-            ease: 'Sine.out',
-            duration: 3000
-        });
+        this.weirdBugMovement(weird3);
     })
     .on('pointerdown', () => {
      if(this.hasItem("Fly Swatter")){
          this.showMessage("SMACKED A weird bug!");
-         this.tweens.add({
-             targets: weird3,
-             y: `-=${2 * this.s}`,
-             alpha: { from: 1, to: 0 },
-             duration: 500,
-             onComplete: () => weird3.destroy()
- });
+         this.destroyBug(weird3);
      }
      else{
          this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -579,24 +523,12 @@ class Scene3 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: fly1,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 1000
-            });
+            this.flyMovement(fly1);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
-             this.tweens.add({
-                 targets: fly1,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => fly1.destroy()
-         });
+             this.destroyBug(fly1);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -607,24 +539,12 @@ class Scene3 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: fly2,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 1000
-            });
+            this.flyMovement(fly2);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
-             this.tweens.add({
-                 targets: fly2,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => fly2.destroy()
-         });
+             this.destroyBug(fly2);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -635,24 +555,12 @@ class Scene3 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: fly3,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 1000
-            });
+            this.flyMovement(fly3);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
-             this.tweens.add({
-                 targets: fly3,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => fly3.destroy()
-         });
+             this.destroyBug(fly3);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -663,24 +571,12 @@ class Scene3 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: fly4,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 1000
-            });
+            this.flyMovement(fly4);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
-             this.tweens.add({
-                 targets: fly4,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => fly4.destroy()
-         });
+             this.destroyBug(fly4);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -691,24 +587,12 @@ class Scene3 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: weird1,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 3000
-            });
+            this.weirdBugMovement(weird1);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A weird bug!");
-             this.tweens.add({
-                 targets: weird1,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => weird1.destroy()
-          });
+             this.destroyBug(weird1);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -719,24 +603,12 @@ class Scene3 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: weird2,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 3000
-            });
+            this.weirdBugMovement(weird2);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A weird bug!");
-             this.tweens.add({
-                 targets: weird2,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => weird2.destroy()
-         });
+             this.destroyBug(weird2);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -747,24 +619,12 @@ class Scene3 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: weird3,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 3000
-            });
+            this.weirdBugMovement(weird3);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A weird bug!");
-             this.tweens.add({
-                 targets: weird3,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => weird3.destroy()
-     });
+             this.destroyBug(weird3);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -809,24 +669,12 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: fly1,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 1000
-            });
+            this.flyMovement(fly1);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
-             this.tweens.add({
-                 targets: fly1,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => fly1.destroy()
-         });
+             this.destroyBug(fly1);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -837,24 +685,12 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: fly2,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 1000
-            });
+            this.flyMovement(fly2);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
-             this.tweens.add({
-                 targets: fly2,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => fly2.destroy()
-         });
+             this.destroyBug(fly2);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -865,24 +701,12 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: fly3,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 1000
-            });
+            this.flyMovement(fly3);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
-             this.tweens.add({
-                 targets: fly3,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => fly3.destroy()
-         });
+             this.destroyBug(fly3);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -893,24 +717,12 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: fly4,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 1000
-            });
+            this.flyMovement(fly4);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A FLY!");
-             this.tweens.add({
-                 targets: fly4,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => fly4.destroy()
-         });
+             this.destroyBug(fly4);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some flies.")
@@ -921,24 +733,12 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: weird1,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 3000
-            });
+            this.weirdBugMovement(weird1);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A weird bug!");
-             this.tweens.add({
-                 targets: weird1,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => weird1.destroy()
-          });
+             this.destroyBug(weird1);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -949,24 +749,12 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: weird2,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 3000
-            });
+            this.weirdBugMovement(weird2);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A weird bug!");
-             this.tweens.add({
-                 targets: weird2,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => weird2.destroy()
-         });
+             this.destroyBug(weird2);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -977,24 +765,12 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*buzzzzzz*');
-            this.tweens.add({
-                targets: weird3,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 3000
-            });
+            this.weirdBugMovement(weird3);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Fly Swatter")){
              this.showMessage("SMACKED A weird bug!");
-             this.tweens.add({
-                 targets: weird3,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => weird3.destroy()
-     });
+             this.destroyBug(weird3);
          }
          else{
              this.showMessage("Must have a Fly Swatter to smack some weird bugs.")
@@ -1005,23 +781,13 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*beetle noises*');
-            this.tweens.add({
-                targets: beetle1,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 5000
-            });
+            this.beetleMovement(beetle1);
+
         })
         .on('pointerdown', () => {
              if(this.hasItem("Chemicals")){
                  this.showMessage("Got a beetle!");
-                 this.tweens.add({
-                     targets: beetle1,
-                     y: `-=${2 * this.s}`,
-                     alpha: { from: 1, to: 0 },
-                     duration: 500,
-                     onComplete: () => beetle1.destroy()
-         });
+                 this.destroyBug(beetle1);
              }
              else{
                  this.showMessage("Must have chemicals to exterminate beetles.")
@@ -1034,23 +800,12 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*beetle noises*');
-            this.tweens.add({
-                targets: beetle2,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 3500
-            });
+            this.beetleMovement(beetle2);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Chemicals")){
              this.showMessage("Got a beetle!");
-             this.tweens.add({
-                 targets: beetle2,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => beetle2.destroy()
-         });
+             this.destroyBug(beetle2);
              }
              else{
                  this.showMessage("Must have chemicals to exterminate beetles.")
@@ -1061,23 +816,12 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*beetle noises*');
-            this.tweens.add({
-                targets: beetle3,
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.out',
-                duration: 3500
-            });
+            this.beetleMovement(beetle3);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Chemicals")){
              this.showMessage("Got a beetle!");
-             this.tweens.add({
-                 targets: beetle3,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => beetle3.destroy()
-         });
+             this.destroyBug(beetle3);
              }
              else{
                  this.showMessage("Must have chemicals to exterminate beetles.")
@@ -1088,24 +832,12 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*bug noises*');
-            this.tweens.add({
-                targets: termite1,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.inout',
-                duration: 5000
-            });
+            this.termiteMovement(termite1);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Chemicals")){
              this.showMessage("Got a termite!");
-             this.tweens.add({
-                 targets: termite1,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => termite1.destroy()
-         });
+             this.destroyBug(termite1);
              }
              else{
                  this.showMessage("Must have chemicals to exterminate termites.")
@@ -1116,24 +848,12 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*bug noises*');
-            this.tweens.add({
-                targets: termite2,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.inout',
-                duration: 5000
-            });
+            this.termiteMovement(termite1);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Chemicals")){
              this.showMessage("Got a termite!");
-             this.tweens.add({
-                 targets: termite2,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => termite2.destroy()
-         });
+             this.destroyBug(termite2);
              }
              else{
                  this.showMessage("Must have chemicals to exterminate termites.")
@@ -1144,24 +864,12 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*bug noises*');
-            this.tweens.add({
-                targets: termite3,
-                x: this.s + (this.h - 2 * this.s) * Math.random(),
-                y: this.s + (this.h - 2 * this.s) * Math.random(),
-                ease: 'Sine.inout',
-                duration: 5000
-            });
+            this.termiteMovement(termite1);
         })       
         .on('pointerdown', () => {
          if(this.hasItem("Chemicals")){
              this.showMessage("Got a termite!");
-             this.tweens.add({
-                 targets: termite3,
-                 y: `-=${2 * this.s}`,
-                 alpha: { from: 1, to: 0 },
-                 duration: 500,
-                 onComplete: () => termite3.destroy()
-         });
+             this.destroyBug(termite3);
              }
              else{
                  this.showMessage("Must have chemicals to exterminate termites.")
