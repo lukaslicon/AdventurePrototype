@@ -68,8 +68,16 @@ class AdventureScene extends Phaser.Scene {
 
     }
 
-    updateCount(){
-        count = count + 1;
+    //destroy bugs
+    destroyBug(image){
+        this.add.image(image);
+        this.tweens.add({
+            targets: image,
+            y: `-=${2 * this.s}`,
+            alpha: { from: 1, to: 0 },
+            duration: 500,
+            onComplete: () => image.destroy()
+     });
     }
     //all movement functions for bugs
     termiteMovement(image){
