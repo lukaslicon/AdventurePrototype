@@ -2,11 +2,14 @@ class AdventureScene extends Phaser.Scene {
 
     init(data) {
         this.inventory = data.inventory || [];
+        
+
     }
 
     constructor(key, name) {
         super(key);
         this.name = name;
+
     }
 
     create() {
@@ -20,11 +23,23 @@ class AdventureScene extends Phaser.Scene {
         this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
 
         this.add.rectangle(this.w * 0.75, 0, this.w * 0.25, this.h).setOrigin(0, 0).setFillStyle(0);
-        this.add.text(this.w * 0.75 + this.s, this.s)
+        
+        this.add.text(this.w * .75 + this.s, this.s)
             .setText(this.name)
             .setStyle({ fontSize: `${3 * this.s}px` })
             .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
-        
+
+        this.add.text(this.w * .75 + this.s, this.h * .2)
+            .setText("count: ")
+            .setStyle({ fontSize: `${3 * this.s}px` })
+            .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
+
+        let count = 0;
+        this.add.text(this.w * .75 + this.s, this.h * .2)
+            .setText(count)
+            .setStyle({ fontSize: `${3 * this.s}px` })
+            .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
+
         this.messageBox = this.add.text(this.w * 0.75 + this.s, this.h * 0.33)
             .setStyle({ fontSize: `${2 * this.s}px`, color: '#eea' })
             .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
@@ -53,6 +68,9 @@ class AdventureScene extends Phaser.Scene {
 
     }
 
+    updateCount(){
+        count = count + 1;
+    }
     //all movement functions for bugs
     termiteMovement(image){
         this.add.image(image);

@@ -2,7 +2,7 @@
 
 class Scene1 extends AdventureScene {
     constructor() {
-        super("Scene1", "Entrance");
+        super("Scene1", "Entrance",);
     }
     preload(){
         this.load.image('entrance', 'assets/images/entrance.png');
@@ -163,7 +163,6 @@ class Scene1 extends AdventureScene {
        })
        .on('pointerdown', () => {
         if(this.hasItem("Fly Swatter")){
-            counter++;
             this.showMessage("SMACKED A weird bug!");
             this.tweens.add({
                 targets: weird2,
@@ -193,6 +192,7 @@ class Scene1 extends AdventureScene {
                 alpha: { from: 1, to: 0 },
                 duration: 500,
                 onComplete: () => weird3.destroy()
+                
     });
         }
         else{
