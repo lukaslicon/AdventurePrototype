@@ -958,9 +958,14 @@ class Outro1 extends Phaser.Scene {
     constructor() {
         super('outro1');
     }
+    preload(){
+        this.load.image('success', 'assets/images/success.png');
+    }
     create() {
-        this.add.text(50, 50, "Congratulations you have exterminated all the bugs!").setFontSize(50);
-        this.add.text(50, 100, "Click anywhere to restart.").setFontSize(20);
+        this.add.text(200, 150, "Congratulations you have exterminated all the bugs! \n\n       Your clients were happy for the day :)").setFontSize(50).setFill("#00ff00");
+
+        this.add.image(900,600, 'success').setScale(1)
+        this.add.text(750, 900, "Click anywhere to restart.").setFontSize(20)
         this.input.on('pointerdown', () => this.scene.start('intro'));
     }
 }
@@ -972,7 +977,7 @@ class Outro2 extends Phaser.Scene {
         this.load.image('failure', 'assets/images/failure.png');
     }
     create() {
-        this.add.text(350, 150, "You couldn't even eliminate 15 bugs? \n \n What an exterminator you are.....").setFontSize(50);
+        this.add.text(350, 150, "You couldn't even eliminate 15 bugs? \n\n What an exterminator you are.....").setFontSize(50).setFill("#ff0000");
         this.add.image(900,600, 'failure').setScale(1)
         this.add.text(750, 900, "Click anywhere to restart.").setFontSize(20);
         this.input.on('pointerdown', () => this.scene.start('intro'));
@@ -991,8 +996,8 @@ const game = new Phaser.Game({
     //2 scene: [Scene2, Intro, Scene1, Scene3, Scene4,  Outro1, Outro2],
     //scene: [Scene3, Intro, Scene1, Scene2, Scene4,  Outro1, Outro2],
     //scene: [Scene4, Intro, Scene1, Scene2, Scene3,  Outro1, Outro2],
-    //scene: [ Outro1, Scene4, Intro, Scene1, Scene2, Scene3,  Outro2],
-    scene: [ Outro2, Scene4, Intro, Scene1, Scene2, Scene3,  Outro1],
+    scene: [ Outro1, Scene4, Intro, Scene1, Scene2, Scene3,  Outro2],
+    //scene: [ Outro2, Scene4, Intro, Scene1, Scene2, Scene3,  Outro1],
     title: "Adventure Game",
 });
 
