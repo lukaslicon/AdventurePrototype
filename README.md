@@ -14,7 +14,7 @@ Experience requirements:
 - **Many objects have `pointerdown` effects**: Almost all object in the game have pointerdown effects. All bugs have pointerdown effects and all arrows/doors do as well.
 - **Some objects are themselves animated**: I am using a lot of tween based functions so that all the flies are moving and my images such as chemicals, smoke, and flyswatter all move. Also the hives and all bees have fadeOut tweens for whne they die. 
 
-**Asset sources**:
+**Asset sources**:...
 **Entrance**: cropped and resized pixels and changed saturation/hue
 https://www.vectorstock.com/royalty-free-vector/dark-house-hallway-wood-interior-cartoon-vector-46624654 
 **Bathroom**: recolored all gray to black and increased the hue so that there was different colors in the room https://www.freepik.com/free-vector/bathroom-interior-with-furniture-black-white-theme_18554433.htm#query=dark%20animated%20bathroom&position=48&from_view=search&track=robertav1_2_sidr 
