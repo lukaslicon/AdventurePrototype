@@ -1,4 +1,4 @@
-        let elimCount = 0;
+let elimCount = 0;
 
 class Scene1 extends AdventureScene {
     constructor() {
@@ -43,8 +43,8 @@ class Scene1 extends AdventureScene {
             button.setFill('#FFFFFF');
         })
         .on('pointerdown', () => {
-            this.shakeObject(button);
-            if (elimCount >= 3) {
+            this.shakeText(button);
+            if (elimCount >= 15) {
                 this.gotoScene('outro1');
             }
             else{
@@ -480,6 +480,7 @@ class Scene3 extends AdventureScene {
         this.load.image('chemicals', 'assets/images/chemicals.png');
         this.load.image('fly swatter', 'assets/images/flyswatter.png');
         this.load.image('smoker', 'assets/images/smoker.png');
+        this.load.image('hive', 'assets/images/hive.png');
     }
     onEnter() {
         //background img
@@ -491,7 +492,7 @@ class Scene3 extends AdventureScene {
         this.addChemicals();
         this.addFlySwatter();
         this.addSmoke(this.w * 0.4, this.w * 0.5);
-        let hive = this.add.image(this.w * 0.22, this.w * 0.38, 'chemicals')
+        let hive = this.add.image(this.w * 0.22, this.w * 0.38, 'hive')
             .setScale(.3)
             .setInteractive()
             .on('pointerover', () => { 
@@ -499,7 +500,8 @@ class Scene3 extends AdventureScene {
         })
             .on('pointerdown', () => {
                     if(this.hasItem("Smoker")){
-                        this.destroyBug(hive);
+                        this.destroyHive(hive);
+
                     }
                     
         })
@@ -616,7 +618,7 @@ class Scene3 extends AdventureScene {
          }
     })
 
-    let downArrow = this.add.image(this.w * 0.4, this.w * 0.5, 'down')
+    let downArrow = this.add.image(this.w * 0.575, this.w * 0.5, 'down')
         .setScale(.5)
         .setInteractive()
         .on('pointerover', () => { 
@@ -901,6 +903,7 @@ class Intro extends Phaser.Scene {
         this.load.image('buggy', 'assets/images/buggyGamesPeach.png');
     }
     create() {
+        this.game.state.restart()
         this.add.text(535,150, "Out with the Bugs!").setFontSize(80);
         this.add.image(300,200, 'house').setScale(.3)
         this.add.image(900,650, 'buggy').setScale(.6)
@@ -925,8 +928,10 @@ class Outro1 extends Phaser.Scene {
         this.add.text(200, 150, "Congratulations you have exterminated all the bugs! \n\n       Your clients were happy for the day :)").setFontSize(50).setFill("#00ff00");
 
         this.add.image(900,600, 'success').setScale(1)
-        this.add.text(750, 900, "Click anywhere to restart.").setFontSize(20)
-        this.input.on('pointerdown', () => this.scene.start('intro'));
+        this.add.text(750, 900, "Click anywhere to restart.").setFontSize(20)   
+            this.input.on('pointerdown', () => {
+                this.scene.start('intro')
+    });
     }
 }
 class Outro2 extends Phaser.Scene {
@@ -940,7 +945,9 @@ class Outro2 extends Phaser.Scene {
         this.add.text(350, 150, "You couldn't even eliminate 15 bugs? \n\n What an exterminator you are.....").setFontSize(50).setFill("#ff0000");
         this.add.image(900,600, 'failure').setScale(1)
         this.add.text(750, 900, "Click anywhere to restart.").setFontSize(20);
-        this.input.on('pointerdown', () => this.scene.start('intro'));
+        this.input.on('pointerdown', () => {
+            this.scene.start('intro')
+    });
     }
 }
 
@@ -952,9 +959,9 @@ const game = new Phaser.Game({
         height: 1080
     },
     //scene: [Intro, Scene1, Scene2, Scene3, Scene4, Outro1, Outro2],
-    //1 scene: [Scene1, Intro, Scene2, Scene3, Scene4, Outro1, Outro2],
-    scene: [Scene2, Intro, Scene1, Scene3, Scene4,  Outro1, Outro2],
-    //scene: [Scene3, Intro, Scene1, Scene2, Scene4,  Outro1, Outro2],
+    //scene: [Scene1, Intro, Scene2, Scene3, Scene4, Outro1, Outro2],
+    //scene: [Scene2, Intro, Scene1, Scene3, Scene4,  Outro1, Outro2],
+    scene: [Scene3, Intro, Scene1, Scene2, Scene4,  Outro1, Outro2],
     //scene: [Scene4, Intro, Scene1, Scene2, Scene3,  Outro1, Outro2],
     //scene: [ Outro1, Scene4, Intro, Scene1, Scene2, Scene3,  Outro2],
     //scene: [ Outro2, Scene4, Intro, Scene1, Scene2, Scene3,  Outro1],
