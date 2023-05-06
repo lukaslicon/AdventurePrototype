@@ -18,12 +18,6 @@ class Scene1 extends AdventureScene {
         this.load.image('fly swatter', 'assets/images/flyswatter.png');
     }
     onEnter() {
-
-        let score = this.add.text(this.w * .875 + this.s, this.h * .2)
-        .setText(elimCount)
-        .setStyle({ fontSize: `${3 * this.s}px` })
-        .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
-
         //background img
         this.imageObject = this.add.image(
                     720,//x
@@ -344,8 +338,8 @@ class Scene2 extends AdventureScene {
         this.addChemicals();
         this.addFlySwatter();
 
-        let key = this.add.image(this.w * 0.45, this.w * 0.34, "keys")
-            .setScale(.5)
+        let key = this.add.image(this.w * 0.5, this.w * 0.34, "keys")
+            .setScale(.2)
             .setInteractive()
             .on('pointerover', () => {
                 this.showMessage("It's a nice key.")
@@ -485,6 +479,7 @@ class Scene3 extends AdventureScene {
         this.load.image('termite', 'assets/images/bug4.png');
         this.load.image('chemicals', 'assets/images/chemicals.png');
         this.load.image('fly swatter', 'assets/images/flyswatter.png');
+        this.load.image('smoker', 'assets/images/smoker.png');
     }
     onEnter() {
         //background img
@@ -495,6 +490,7 @@ class Scene3 extends AdventureScene {
         )   
         this.addChemicals();
         this.addFlySwatter();
+        this.addSmoke(this.w * 0.4, this.w * 0.5);
         let hive = this.add.image(this.w * 0.22, this.w * 0.38, 'chemicals')
             .setScale(.3)
             .setInteractive()
@@ -502,7 +498,7 @@ class Scene3 extends AdventureScene {
                 this.showMessage("Must have smoke to take out the hive! counts as 3 points.");
         })
             .on('pointerdown', () => {
-                    if(this.hasItem("Fly Swatter")){
+                    if(this.hasItem("Smoker")){
                         this.destroyBug(hive);
                     }
                     
@@ -658,6 +654,7 @@ class Scene4 extends AdventureScene {
         )   
         this.addChemicals();
         this.addFlySwatter();
+        this.addSmoke(this.w * 0.4, this.w * 0.5);
         let hive = this.add.image(this.w * 0.1, this.w * 0.48, 'hive')
             .setScale(.6)
             .setInteractive()
@@ -670,7 +667,6 @@ class Scene4 extends AdventureScene {
                     }
                     
         })
-        this.addSmoke(this.w * 0.4, this.w * 0.5);
 
         let fly1 =this.add.image(this.w * 0.3, this.w * 0.2, 'fly')
         .setScale(.15)

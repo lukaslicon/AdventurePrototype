@@ -72,7 +72,7 @@ class AdventureScene extends Phaser.Scene {
     }
 
     addFlySwatter(){
-        this.add.image(this.w * 0.5, this.w * 0.5, 'fly swatter')
+        let img = this.add.image(this.w * 0.5, this.w * 0.5, 'fly swatter')
         .setScale(.3)
         .setInteractive()
         .on('pointerover', () => { 
@@ -80,6 +80,7 @@ class AdventureScene extends Phaser.Scene {
     })
         .on('pointerdown', () => {
                 this.showMessage("You picked up fly swatter");
+                this.shakeObj(img);
                 this.gainItem('Fly Swatter');
                 if(this.hasItem("Chemicals")){
                     this.loseItem("Chemicals");
@@ -87,7 +88,7 @@ class AdventureScene extends Phaser.Scene {
     })
     }
     addChemicals(){
-        this.add.image(this.w * 0.28, this.w * 0.48, 'chemicals')
+        let img = this.add.image(this.w * 0.28, this.w * 0.48, 'chemicals')
             .setScale(.3)
             .setInteractive()
             .on('pointerover', () => { 
@@ -95,15 +96,17 @@ class AdventureScene extends Phaser.Scene {
         })
             .on('pointerdown', () => {
                     this.showMessage("You picked up the chemicals");
+                    this.shakeObj(img);
                     this.gainItem('Chemicals');
                     if(this.hasItem("Fly Swatter")){
                         this.loseItem("Fly Swatter");
+
                     }
                     
         })
     }
     addSmoke(width, height){
-        this.add.image(width, height, 'smoker')
+        let img = this.add.image(width, height, 'smoker')
             .setScale(.20)
             .setInteractive()
             .on('pointerover', () => { 
@@ -111,10 +114,8 @@ class AdventureScene extends Phaser.Scene {
         })
             .on('pointerdown', () => {
                     this.showMessage("You picked up the chemicals");
+                    this.shakeObj(img);
                     this.gainItem('Smoker');
-                    if(this.hasItem("Fly Swatter")){
-                        this.loseItem("Fly Swatter");
-                    }
                     
         })
     }
@@ -128,6 +129,18 @@ class AdventureScene extends Phaser.Scene {
             repeat: 2,
             yoyo: true,
             ease: 'Sine.inOut',
+            duration: 100
+        });
+    }
+
+    shakeObj(image){
+        this.add.image(image);
+        this.tweens.add({
+            targets: image,
+            y: '+=' + this.s,
+            repeat: 2,
+            yoyo: true,
+            ease: 'Sine.out',
             duration: 100
         });
     }
