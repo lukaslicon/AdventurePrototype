@@ -10,11 +10,12 @@ class Scene1 extends AdventureScene {
         this.load.image('right', 'assets/images/arrow.png');
         this.load.image('up', 'assets/images/arrowup.png');
         this.load.image('down', 'assets/images/arrowdown.png');
-        this.load.image('chemicals', 'assets/images/hive.png');
+        this.load.image('chemicals', 'assets/images/chemicals.png');
         this.load.image('fly', 'assets/images/fly.png');
         this.load.image('weirdbug', 'assets/images/bug2.png');
         this.load.image('beetle', 'assets/images/bug3.png');
         this.load.image('termite', 'assets/images/bug4.png');
+        this.load.image('fly swatter', 'assets/images/flyswatter.png');
     }
     onEnter() {
 
@@ -329,6 +330,8 @@ class Scene2 extends AdventureScene {
         this.load.image('weirdbug', 'assets/images/bug2.png');
         this.load.image('beetle', 'assets/images/bug3.png');
         this.load.image('termite', 'assets/images/bug4.png');
+        this.load.image('fly swatter', 'assets/images/flyswatter.png');
+        this.load.image('chemicals', 'assets/images/chemicals.png');
     }
     onEnter() {
         //background img
@@ -483,7 +486,8 @@ class Scene3 extends AdventureScene {
         this.load.image('weirdbug', 'assets/images/bug2.png');
         this.load.image('beetle', 'assets/images/bug3.png');
         this.load.image('termite', 'assets/images/bug4.png');
-        this.load.image('chemicals', 'assets/images/hive.png');
+        this.load.image('chemicals', 'assets/images/chemicals.png');
+        this.load.image('fly swatter', 'assets/images/flyswatter.png');
     }
     onEnter() {
         //background img
@@ -643,8 +647,10 @@ class Scene4 extends AdventureScene {
         this.load.image('weirdbug', 'assets/images/bug2.png');
         this.load.image('beetle', 'assets/images/bug3.png');
         this.load.image('termite', 'assets/images/bug4.png');
-        this.load.image('chemicals', 'assets/images/hive.png');
+        this.load.image('chemicals', 'assets/images/chemicals.png');
         this.load.image('smoker', 'assets/images/smoker.png');
+        this.load.image('fly swatter', 'assets/images/flyswatter.png');
+        this.load.image('hive', 'assets/images/hive.png');
     }
     onEnter() {
         //background img
@@ -655,7 +661,7 @@ class Scene4 extends AdventureScene {
         )   
         this.addChemicals();
         this.addFlySwatter();
-        let hive = this.add.image(this.w * 0.1, this.w * 0.48, 'chemicals')
+        let hive = this.add.image(this.w * 0.1, this.w * 0.48, 'hive')
             .setScale(.6)
             .setInteractive()
             .on('pointerover', () => { 

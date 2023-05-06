@@ -67,7 +67,7 @@ class AdventureScene extends Phaser.Scene {
     }
 
     addFlySwatter(){
-        this.add.image(this.w * 0.5, this.w * 0.5, 'chemicals')
+        this.add.image(this.w * 0.5, this.w * 0.5, 'fly swatter')
         .setScale(.3)
         .setInteractive()
         .on('pointerover', () => { 
@@ -82,7 +82,7 @@ class AdventureScene extends Phaser.Scene {
     })
     }
     addChemicals(){
-        this.add.image(this.w * 0.3, this.w * 0.5, 'chemicals')
+        this.add.image(this.w * 0.28, this.w * 0.48, 'chemicals')
             .setScale(.3)
             .setInteractive()
             .on('pointerover', () => { 
