@@ -32,6 +32,11 @@ class AdventureScene extends Phaser.Scene {
             .setText("count: ")
             .setStyle({ fontSize: `${3 * this.s}px` })
             .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
+
+        let score = this.add.text(this.w * .875 + this.s, this.h * .2)
+            .setText(elimCount)
+            .setStyle({ fontSize: `${3 * this.s}px` })
+            .setWordWrapWidth(this.w * 0.25 - 2 * this.s);
             
         this.add.text(this.w * .75 + this.s, this.h * .25)
             .setText("*updates with room swap*")
@@ -154,40 +159,56 @@ class AdventureScene extends Phaser.Scene {
     }
     //all movement functions for bugs
     termiteMovement(image){
+        let destX = this.s + (this.h - 2 * this.s) * Math.random();
+        let destY = this.s + (this.h - 2 * this.s) * Math.random();
+        var angle = Phaser.Math.Angle.BetweenPoints(image, { x: destX, y: destY });
         this.add.image(image);
         this.tweens.add({
             targets: image,
-            x: this.s + (this.h - 2 * this.s) * Math.random(),
-            y: this.s + (this.h - 2 * this.s) * Math.random(),
+            x: destX,
+            y: destY,
+            angle: angle * Phaser.Math.RAD_TO_DEG,
             ease: 'Sine.inout',
             duration: 5000
         });
     }
     beetleMovement(image){
+        let destX = this.s + (this.h - 2 * this.s) * Math.random();
+        let destY = this.s + (this.h - 2 * this.s) * Math.random();
+        var angle = Phaser.Math.Angle.BetweenPoints(image, { x: destX, y: destY });
         this.add.image(image);
         this.tweens.add({
             targets: image,
-            x: this.s + (this.h - 2 * this.s) * Math.random(),
+            x: destX,
+            angle: angle * Phaser.Math.RAD_TO_DEG,
             ease: 'Sine.out',
             duration: 5000
         });
     }
     weirdBugMovement(image){
+        let destX = this.s + (this.h - 2 * this.s) * Math.random();
+        let destY = this.s + (this.h - 2 * this.s) * Math.random();
+        var angle = Phaser.Math.Angle.BetweenPoints(image, { x: destX, y: destY });
         this.add.image(image);
         this.tweens.add({
             targets: image,
-            x: this.s + (this.h - 2 * this.s) * Math.random(),
-            y: this.s + (this.h - 2 * this.s) * Math.random(),
+            x: destX,
+            y: destY,
+            angle: angle * Phaser.Math.RAD_TO_DEG,
             ease: 'Sine.out',
             duration: 3000
         });
     }
     flyMovement(image){
+        let destX = this.s + (this.h - 2 * this.s) * Math.random();
+        let destY = this.s + (this.h - 2 * this.s) * Math.random();
+        var angle = Phaser.Math.Angle.BetweenPoints(image, { x: destX, y: destY });
         this.add.image(image);
         this.tweens.add({
             targets: image,
-            x: this.s + (this.h - 2 * this.s) * Math.random(),
-            y: this.s + (this.h - 2 * this.s) * Math.random(),
+            x: destX,
+            y: destY,
+            angle: angle * Phaser.Math.RAD_TO_DEG,
             ease: 'Sine.out',
             duration: 2000
         });
