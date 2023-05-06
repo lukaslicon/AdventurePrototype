@@ -159,7 +159,7 @@ class AdventureScene extends Phaser.Scene {
     }
 
     destroyHive(image){
-        elimCount++;
+        elimCount = elimCount + 3;
         this.add.image(image);
         this.loseItem('Smoker');
         this.tweens.add({
