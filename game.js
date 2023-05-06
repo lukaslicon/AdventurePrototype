@@ -29,8 +29,10 @@ class Scene1 extends AdventureScene {
                     540,//y
             'entrance',
         )
+
         this.addChemicals();
         this.addFlySwatter();
+
         let button = this.add.text(this.w * 0.01, this.w * 0.01, "Tell Owner I am Finished.")
         .setFontSize(this.s * 2)
         .setInteractive()
@@ -56,7 +58,7 @@ class Scene1 extends AdventureScene {
         })
  
 
-    let fly1 =this.add.image(this.w * 0.3, this.w * 0.2, 'fly')
+    let fly1 = this.add.image(this.w * 0.3, this.w * 0.2, 'fly')
        .setScale(.15)
        .setInteractive()
        .on('pointerover', () => {
@@ -349,6 +351,8 @@ class Scene2 extends AdventureScene {
             540,//y
             'office',
         )   
+        this.addChemicals();
+        this.addFlySwatter();
         let score = this.add.text(this.w * .875 + this.s, this.h * .2)
         .setText(elimCount)
         .setStyle({ fontSize: `${3 * this.s}px` })
@@ -508,6 +512,8 @@ class Scene3 extends AdventureScene {
             540,//y
             'upstairs',
         )   
+        this.addChemicals();
+        this.addFlySwatter();
         let hive = this.add.image(this.w * 0.22, this.w * 0.38, 'chemicals')
             .setScale(.3)
             .setInteractive()
@@ -640,7 +646,7 @@ class Scene3 extends AdventureScene {
          }
     })
 
-    let downArrow = this.add.image(this.w * 0.375, this.w * 0.5, 'down')
+    let downArrow = this.add.image(this.w * 0.4, this.w * 0.5, 'down')
         .setScale(.5)
         .setInteractive()
         .on('pointerover', () => { 
@@ -673,19 +679,22 @@ class Scene4 extends AdventureScene {
             540,//y
             'bathroom',
         )   
-        let hive = this.add.image(this.w * 0.22, this.w * 0.38, 'chemicals')
-            .setScale(.3)
+        this.addChemicals();
+        this.addFlySwatter();
+        let hive = this.add.image(this.w * 0.1, this.w * 0.48, 'chemicals')
+            .setScale(.6)
             .setInteractive()
             .on('pointerover', () => { 
                 this.showMessage("Must have smoke to take out the hive! counts as 3 points.");
         })
             .on('pointerdown', () => {
-                    if(this.hasItem("Fly Swatter")){
+                    if(this.hasItem("Smoker")){
                         this.destroyBug(hive);
                     }
                     
         })
-        this.addSmoke(this.w * 0.22, this.w * 0.);
+        this.addSmoke(this.w * 0.7, this.w * 0.4);
+
         let fly1 =this.add.image(this.w * 0.3, this.w * 0.2, 'fly')
         .setScale(.15)
         .setInteractive()
@@ -881,7 +890,7 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*bug noises*');
-            this.termiteMovement(termite1);
+            this.termiteMovement(termite2);
         })
         .on('pointerdown', () => {
          if(this.hasItem("Chemicals")){
@@ -898,7 +907,7 @@ class Scene4 extends AdventureScene {
         .setInteractive()
         .on('pointerover', () => {
             this.showMessage('*bug noises*');
-            this.termiteMovement(termite1);
+            this.termiteMovement(termite3);
         })       
         .on('pointerdown', () => {
          if(this.hasItem("Chemicals")){
@@ -926,6 +935,10 @@ class Scene4 extends AdventureScene {
 class Intro extends Phaser.Scene {
     constructor() {
         super('intro')
+    }
+    preload(){
+        this.load.image('house', 'assets/images/house.png');
+        this.load.image('buggy', 'assets/images/buggyGames.png');
     }
     create() {
         this.add.text(585,50, "Out with the Bugs!").setFontSize(60);
@@ -968,11 +981,11 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    //scene: [Intro, Scene1, Scene2, Scene3, Scene4, Outro1, Outro2],
+    scene: [Intro, Scene1, Scene2, Scene3, Scene4, Outro1, Outro2],
     //1 scene: [Scene1, Intro, Scene2, Scene3, Scene4, Outro1, Outro2],
     //2 scene: [Scene2, Intro, Scene1, Scene3, Scene4,  Outro1, Outro2],
     //scene: [Scene3, Intro, Scene1, Scene2, Scene4,  Outro1, Outro2],
-    scene: [Scene4, Intro, Scene1, Scene2, Scene3,  Outro1, Outro2],
+    //scene: [Scene4, Intro, Scene1, Scene2, Scene3,  Outro1, Outro2],
     title: "Adventure Game",
 });
 

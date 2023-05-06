@@ -97,6 +97,23 @@ class AdventureScene extends Phaser.Scene {
                     
         })
     }
+    addSmoke(width, height){
+        this.add.image(width, height, 'chemicals')
+            .setScale(.3)
+            .setInteractive()
+            .on('pointerover', () => { 
+                this.showMessage("Chemicals to fight off ground insects.");
+        })
+            .on('pointerdown', () => {
+                    this.showMessage("You picked up the chemicals");
+                    this.gainItem('Chemicals');
+                    if(this.hasItem("Fly Swatter")){
+                        this.loseItem("Fly Swatter");
+                    }
+                    
+        })
+    }
+
 
     shakeObject(txt){
         this.add.text(txt);
