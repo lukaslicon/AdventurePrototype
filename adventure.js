@@ -223,7 +223,7 @@ class AdventureScene extends Phaser.Scene {
             y: destY,
             angle: angle * Phaser.Math.RAD_TO_DEG,
             ease: 'Sine.out',
-            duration: 2000
+            duration: 2500
         });
     }
 
