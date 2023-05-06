@@ -129,12 +129,13 @@ class AdventureScene extends Phaser.Scene {
 
     //destroy any bug
     destroyBug(image){
+        elimCount++;
         this.add.image(image);
         this.tweens.add({
             targets: image,
             y: `-=${2 * this.s}`,
             alpha: { from: 1, to: 0 },
-            duration: 500,
+            duration: 100,
             onComplete: () => image.destroy()
      });
     }
@@ -175,7 +176,7 @@ class AdventureScene extends Phaser.Scene {
             x: this.s + (this.h - 2 * this.s) * Math.random(),
             y: this.s + (this.h - 2 * this.s) * Math.random(),
             ease: 'Sine.out',
-            duration: 1000
+            duration: 2000
         });
     }
 
