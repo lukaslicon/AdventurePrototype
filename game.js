@@ -938,12 +938,15 @@ class Intro extends Phaser.Scene {
     }
     preload(){
         this.load.image('house', 'assets/images/house.png');
-        this.load.image('buggy', 'assets/images/buggyGames.png');
+        this.load.image('buggy', 'assets/images/buggyGamesPeach.png');
     }
     create() {
-        this.add.text(585,50, "Out with the Bugs!").setFontSize(60);
+        this.add.text(535,150, "Out with the Bugs!").setFontSize(80);
+        this.add.image(300,200, 'house').setScale(.3)
+        this.add.image(900,650, 'buggy').setScale(.6)
         this.add.text(275, 400, "You are an exterminator and will need to get rid of all the bugs\n                   in this disgusting house...").setFontSize(35);
-        this.add.text(735,900, "Click anywhere to begin.").setFontSize(20)
+        this.add.text(525, 825, "Exterminate 15 bugs to finish your job.").setFontSize(35);
+        this.add.text(775,950, "Click anywhere to begin.").setFontSize(20)
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
             this.time.delayedCall(1000, () => this.scene.start('Scene1'));
@@ -965,14 +968,16 @@ class Outro2 extends Phaser.Scene {
     constructor() {
         super('outro2');
     }
+    preload(){
+        this.load.image('failure', 'assets/images/failure.png');
+    }
     create() {
-        this.add.text(50, 50, "YOU SUCK!").setFontSize(50);
-        this.add.text(50, 100, "Click anywhere to restart.").setFontSize(20);
+        this.add.text(350, 150, "You couldn't even eliminate 15 bugs? \n \n What an exterminator you are.....").setFontSize(50);
+        this.add.image(900,600, 'failure').setScale(1)
+        this.add.text(750, 900, "Click anywhere to restart.").setFontSize(20);
         this.input.on('pointerdown', () => this.scene.start('intro'));
     }
 }
-
-
 
 const game = new Phaser.Game({
     scale: {
@@ -981,11 +986,13 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Scene1, Scene2, Scene3, Scene4, Outro1, Outro2],
+    //scene: [Intro, Scene1, Scene2, Scene3, Scene4, Outro1, Outro2],
     //1 scene: [Scene1, Intro, Scene2, Scene3, Scene4, Outro1, Outro2],
     //2 scene: [Scene2, Intro, Scene1, Scene3, Scene4,  Outro1, Outro2],
     //scene: [Scene3, Intro, Scene1, Scene2, Scene4,  Outro1, Outro2],
     //scene: [Scene4, Intro, Scene1, Scene2, Scene3,  Outro1, Outro2],
+    //scene: [ Outro1, Scene4, Intro, Scene1, Scene2, Scene3,  Outro2],
+    scene: [ Outro2, Scene4, Intro, Scene1, Scene2, Scene3,  Outro1],
     title: "Adventure Game",
 });
 
