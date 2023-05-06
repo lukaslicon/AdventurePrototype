@@ -1,4 +1,4 @@
-A simple adventure game by {who?} based on a simple adventure game engine by [Adam Smith](https://github.com/rndmcnlly).
+A simple adventure based game by Lukas Licon based on a simple adventure game engine by [Adam Smith](https://github.com/rndmcnlly).
 
 Code requirements:
 - **4+ scenes based on `AdventureScene`**: Scene1, Scene2, Scene3, Scene4
