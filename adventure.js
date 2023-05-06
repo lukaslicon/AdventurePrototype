@@ -66,6 +66,50 @@ class AdventureScene extends Phaser.Scene {
 
     }
 
+    addFlySwatter(){
+        this.add.image(this.w * 0.5, this.w * 0.5, 'chemicals')
+        .setScale(.3)
+        .setInteractive()
+        .on('pointerover', () => { 
+            this.showMessage("Fly swatter to kill flying insects.");
+    })
+        .on('pointerdown', () => {
+                this.showMessage("You picked up fly swatter");
+                this.gainItem('Fly Swatter');
+                if(this.hasItem("Chemicals")){
+                    this.loseItem("Chemicals");
+                }
+    })
+    }
+    addChemicals(){
+        this.add.image(this.w * 0.3, this.w * 0.5, 'chemicals')
+            .setScale(.3)
+            .setInteractive()
+            .on('pointerover', () => { 
+                this.showMessage("Chemicals to fight off ground insects.");
+        })
+            .on('pointerdown', () => {
+                    this.showMessage("You picked up the chemicals");
+                    this.gainItem('Chemicals');
+                    if(this.hasItem("Fly Swatter")){
+                        this.loseItem("Fly Swatter");
+                    }
+                    
+        })
+    }
+
+    shakeObject(txt){
+        this.add.text(txt);
+        this.tweens.add({
+            targets: txt,
+            x: '+=' + this.s,
+            repeat: 2,
+            yoyo: true,
+            ease: 'Sine.inOut',
+            duration: 100
+        });
+    }
+
     //destroy any bug
     destroyBug(image){
         this.add.image(image);

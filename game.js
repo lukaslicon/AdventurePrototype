@@ -17,6 +17,7 @@ class Scene1 extends AdventureScene {
         this.load.image('termite', 'assets/images/bug4.png');
     }
     onEnter() {
+
         let score = this.add.text(this.w * .875 + this.s, this.h * .2)
         .setText(elimCount)
         .setStyle({ fontSize: `${3 * this.s}px` })
@@ -28,19 +29,24 @@ class Scene1 extends AdventureScene {
                     540,//y
             'entrance',
         )
-
+        this.addChemicals();
+        this.addFlySwatter();
         let button = this.add.text(this.w * 0.01, this.w * 0.01, "Tell Owner I am Finished.")
         .setFontSize(this.s * 2)
         .setInteractive()
         .on('pointerover', () => {
-            if (elimCount >= 3) {
+            button.setFill('#FFFF00');
+            if (elimCount >= 15) {
                 this.showMessage("You have elimated enough bugs to call it a day!");
             } else {
                 this.showMessage("You need to elimate more bugs before you can head home from work.");
             }
         })
+        .on('pointerout', () => {
+            button.setFill('#FFFFFF');
+        })
         .on('pointerdown', () => {
-            button.setFill('#FFFF00');
+            this.shakeObject(button);
             if (elimCount >= 3) {
                 this.gotoScene('outro1');
             }
@@ -48,6 +54,7 @@ class Scene1 extends AdventureScene {
                 this.gotoScene('outro2');
             }
         })
+ 
 
     let fly1 =this.add.image(this.w * 0.3, this.w * 0.2, 'fly')
        .setScale(.15)
@@ -276,34 +283,6 @@ class Scene1 extends AdventureScene {
             }
         })
 
-        this.add.image(this.w * 0.3, this.w * 0.5, 'chemicals')
-            .setScale(.3)
-            .setInteractive()
-            .on('pointerover', () => { 
-                this.showMessage("Chemicals to fight off ground insects.");
-        })
-            .on('pointerdown', () => {
-                    this.showMessage("You picked up the chemicals");
-                    this.gainItem('Chemicals');
-                    if(this.hasItem("Fly Swatter")){
-                        this.loseItem("Fly Swatter");
-                    }
-                    
-        })
-
-        this.add.image(this.w * 0.5, this.w * 0.5, 'chemicals')
-        .setScale(.3)
-        .setInteractive()
-        .on('pointerover', () => { 
-            this.showMessage("Fly swatter to kill flying insects.");
-    })
-        .on('pointerdown', () => {
-                this.showMessage("You picked up fly swatter");
-                this.gainItem('Fly Swatter');
-                if(this.hasItem("Chemicals")){
-                    this.loseItem("Chemicals");
-                }
-    })
 
         let rightArrow = this.add.image(this.w * 0.6, this.w * 0.3, 'right')
             .setScale(.3)
@@ -516,10 +495,11 @@ class Scene3 extends AdventureScene {
     preload(){
         this.load.image('upstairs', 'assets/images/attic.jpg');
         this.load.image('down', 'assets/images/arrowdown.png');
-        this.load.image('fly', 'assets/images/fly.jpg');
+        this.load.image('fly', 'assets/images/fly.png');
         this.load.image('weirdbug', 'assets/images/bug2.png');
         this.load.image('beetle', 'assets/images/bug3.png');
         this.load.image('termite', 'assets/images/bug4.png');
+        this.load.image('chemicals', 'assets/images/hive.png');
     }
     onEnter() {
         //background img
@@ -528,7 +508,18 @@ class Scene3 extends AdventureScene {
             540,//y
             'upstairs',
         )   
-
+        let hive = this.add.image(this.w * 0.22, this.w * 0.38, 'chemicals')
+            .setScale(.3)
+            .setInteractive()
+            .on('pointerover', () => { 
+                this.showMessage("Must have smoke to take out the hive! counts as 3 points.");
+        })
+            .on('pointerdown', () => {
+                    if(this.hasItem("Fly Swatter")){
+                        this.destroyBug(hive);
+                    }
+                    
+        })
         let fly1 =this.add.image(this.w * 0.3, this.w * 0.2, 'fly')
         .setScale(.15)
         .setInteractive()
@@ -924,8 +915,9 @@ class Intro extends Phaser.Scene {
         super('intro')
     }
     create() {
-        this.add.text(50,50, "Out with the Bugs!").setFontSize(50);
-        this.add.text(50,100, "Click anywhere to begin.").setFontSize(20);
+        this.add.text(585,50, "Out with the Bugs!").setFontSize(60);
+        this.add.text(275, 400, "You are an exterminator and will need to get rid of all the bugs\n                   in this disgusting house...").setFontSize(35);
+        this.add.text(735,900, "Click anywhere to begin.").setFontSize(20)
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
             this.time.delayedCall(1000, () => this.scene.start('Scene1'));
@@ -963,11 +955,11 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    //scene: [Intro, Scene1, Scene2, Scene3, Scene4, Outro],
-    scene: [Scene1, Intro, Scene2, Scene3, Scene4, Outro1, Outro2],
-    //scene: [Scene2, Intro, Scene1, Scene3, Scene4, Outro],
-    //scene: [Scene3, Intro, Scene1, Scene2, Scene4, Outro],
-    //scene: [Scene4, Intro, Scene1, Scene2, Scene3, Outro],
+    //scene: [Intro, Scene1, Scene2, Scene3, Scene4, Outro1, Outro2],
+    //1 scene: [Scene1, Intro, Scene2, Scene3, Scene4, Outro1, Outro2],
+    //2 scene: [Scene2, Intro, Scene1, Scene3, Scene4,  Outro1, Outro2],
+    scene: [Scene3, Intro, Scene1, Scene2, Scene4,  Outro1, Outro2],
+    //4scene: [Scene4, Intro, Scene1, Scene2, Scene3,  Outro1, Outro2],
     title: "Adventure Game",
 });
 
