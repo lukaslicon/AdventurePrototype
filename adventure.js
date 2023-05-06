@@ -98,15 +98,15 @@ class AdventureScene extends Phaser.Scene {
         })
     }
     addSmoke(width, height){
-        this.add.image(width, height, 'chemicals')
-            .setScale(.3)
+        this.add.image(width, height, 'smoker')
+            .setScale(.20)
             .setInteractive()
             .on('pointerover', () => { 
-                this.showMessage("Chemicals to fight off ground insects.");
+                this.showMessage("Smoker to fight off ground insects.");
         })
             .on('pointerdown', () => {
                     this.showMessage("You picked up the chemicals");
-                    this.gainItem('Chemicals');
+                    this.gainItem('Smoker');
                     if(this.hasItem("Fly Swatter")){
                         this.loseItem("Fly Swatter");
                     }
@@ -115,7 +115,7 @@ class AdventureScene extends Phaser.Scene {
     }
 
 
-    shakeObject(txt){
+    shakeText(txt){
         this.add.text(txt);
         this.tweens.add({
             targets: txt,
@@ -136,6 +136,19 @@ class AdventureScene extends Phaser.Scene {
             y: `-=${2 * this.s}`,
             alpha: { from: 1, to: 0 },
             duration: 100,
+            onComplete: () => image.destroy()
+     });
+    }
+
+    destroyHive(image){
+        elimCount++;
+        this.add.image(image);
+        this.loseItem('Smoker');
+        this.tweens.add({
+            targets: image,
+            y: `-=${2 * this.s}`,
+            alpha: { from: 1, to: 0 },
+            duration: 1000,
             onComplete: () => image.destroy()
      });
     }

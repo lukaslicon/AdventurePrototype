@@ -644,6 +644,7 @@ class Scene4 extends AdventureScene {
         this.load.image('beetle', 'assets/images/bug3.png');
         this.load.image('termite', 'assets/images/bug4.png');
         this.load.image('chemicals', 'assets/images/hive.png');
+        this.load.image('smoker', 'assets/images/smoker.png');
     }
     onEnter() {
         //background img
@@ -662,11 +663,11 @@ class Scene4 extends AdventureScene {
         })
             .on('pointerdown', () => {
                     if(this.hasItem("Smoker")){
-                        this.destroyBug(hive);
+                        this.destroyHive(hive);
                     }
                     
         })
-        this.addSmoke(this.w * 0.7, this.w * 0.4);
+        this.addSmoke(this.w * 0.4, this.w * 0.5);
 
         let fly1 =this.add.image(this.w * 0.3, this.w * 0.2, 'fly')
         .setScale(.15)
@@ -955,8 +956,8 @@ const game = new Phaser.Game({
     //1 scene: [Scene1, Intro, Scene2, Scene3, Scene4, Outro1, Outro2],
     //2 scene: [Scene2, Intro, Scene1, Scene3, Scene4,  Outro1, Outro2],
     //scene: [Scene3, Intro, Scene1, Scene2, Scene4,  Outro1, Outro2],
-    //scene: [Scene4, Intro, Scene1, Scene2, Scene3,  Outro1, Outro2],
-    scene: [ Outro1, Scene4, Intro, Scene1, Scene2, Scene3,  Outro2],
+    scene: [Scene4, Intro, Scene1, Scene2, Scene3,  Outro1, Outro2],
+    //scene: [ Outro1, Scene4, Intro, Scene1, Scene2, Scene3,  Outro2],
     //scene: [ Outro2, Scene4, Intro, Scene1, Scene2, Scene3,  Outro1],
     title: "Adventure Game",
 });
