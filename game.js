@@ -903,7 +903,6 @@ class Intro extends Phaser.Scene {
         this.load.image('buggy', 'assets/images/buggyGamesPeach.png');
     }
     create() {
-        this.game.state.restart()
         this.add.text(535,150, "Out with the Bugs!").setFontSize(80);
         this.add.image(300,200, 'house').setScale(.3)
         this.add.image(900,650, 'buggy').setScale(.6)
